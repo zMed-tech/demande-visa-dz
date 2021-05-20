@@ -10,7 +10,7 @@
             width="15px"
             height="15px"
         /></span>
-        Spain
+        Espagne
       </li>
       <li class="link">
         <span
@@ -20,7 +20,7 @@
             width="15px"
             height="15px"
         /></span>
-        Franch
+        France
       </li>
       <li class="link">
         <span
@@ -30,7 +30,7 @@
             width="15px"
             height="15px"
         /></span>
-        German
+        Germany
       </li>
     </ul>
     <div class="last">Contact</div>
