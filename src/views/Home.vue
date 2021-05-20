@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <TheNavBar />
-    <TheSlideBar />
+    <TheSideBar />
     <div class="bg-home"></div>
     <div class="text">
       Prenez Votre Rendez-Vous <br />
@@ -14,12 +14,13 @@
 
 <script>
 import TheNavBar from "@/components/TheNavBar.vue";
-import TheSlideBar from "@/components/TheSlideBar.vue";
+import TheSideBar from "@/components/TheSideBar.vue";
 import HomeSvg from "@/components/HomeSvg.vue";
+import gsap from "gsap";
 
 export default {
   name: "Home",
-  components: { TheNavBar, TheSlideBar, HomeSvg },
+  components: { TheNavBar, TheSideBar, HomeSvg },
 
   created() {
     setInterval(() => {
@@ -36,6 +37,20 @@ export default {
       this.text += this.words[this.currentWord][this.index];
       this.index++;
     }, 500);
+  },
+
+  mounted() {
+    gsap.from(".text", {
+      x: -100,
+      opacity: 0,
+      duration: 3,
+    });
+
+    gsap.from("svg", {
+      x: 100,
+      opacity: 0,
+      duration: 3,
+    });
   },
 
   data() {

@@ -38,8 +38,19 @@
 </template>
 
 <script>
+import gsap from "gsap";
 export default {
   name: "TheNavBar",
+
+  mounted() {
+    gsap.from("#the-nav-bar", {
+      y: 200,
+      x: 200,
+      duration: 1,
+      rotate: -20,
+      ease: "bounce",
+    });
+  },
 };
 </script>
 
