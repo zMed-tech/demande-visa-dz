@@ -26,6 +26,16 @@ export default {
   name: "Home",
   components: { TheNavBar, TheSideBar, HomeSvg, TheSlideBar },
 
+  data() {
+    return {
+      words: ["BLS", "VFS", "TLS"],
+      text: "",
+      currentWord: 0,
+      index: 0,
+      openSlide: false,
+    };
+  },
+
   created() {
     setInterval(() => {
       if (this.index == this.words[this.currentWord].length) {
@@ -57,16 +67,6 @@ export default {
     });
   },
 
-  data() {
-    return {
-      words: ["BLS", "VFS", "TLS"],
-      text: "",
-      currentWord: 0,
-      index: 0,
-      openSlide: false,
-    };
-  },
-
   methods: {
     openSlideMethode(val) {
       this.openSlide = val;
@@ -85,7 +85,7 @@ export default {
   }
 }
 #home {
-  height: $default-height;
+  min-height: $default-height;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
@@ -131,16 +131,6 @@ export default {
       }
     }
   }
-}
-
-.slide-enter-active,
-.slide-leave-active {
-  transition: all ease-in-out 1s;
-}
-
-.slide-enter,
-.slide-leave-to {
-  transform: translateX(300px);
 }
 
 @media only screen and (max-width: 821px) {
