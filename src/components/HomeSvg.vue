@@ -307,4 +307,18 @@
 export default {};
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+svg {
+  position: relative;
+  z-index: -1;
+}
+
+@media only screen and (max-width: 821px) {
+  svg {
+    position: absolute;
+    z-index: -1;
+    top: 10%;
+    height: 50vh;
+  }
+}
+</style>

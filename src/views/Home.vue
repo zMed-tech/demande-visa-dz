@@ -1,7 +1,10 @@
 <template>
   <div id="home">
-    <TheNavBar />
+    <TheNavBar @openSlide="openSlideMethode" />
     <TheSideBar />
+    <transition name="slide" mode="out-in">
+      <TheSlideBar v-if="openSlide" />
+    </transition>
     <div class="bg-home"></div>
     <div class="text">
       Prenez Votre Rendez-Vous <br />
@@ -15,12 +18,13 @@
 <script>
 import TheNavBar from "@/components/TheNavBar.vue";
 import TheSideBar from "@/components/TheSideBar.vue";
+import TheSlideBar from "@/components/TheSlideBar.vue";
 import HomeSvg from "@/components/HomeSvg.vue";
 import gsap from "gsap";
 
 export default {
   name: "Home",
-  components: { TheNavBar, TheSideBar, HomeSvg },
+  components: { TheNavBar, TheSideBar, HomeSvg, TheSlideBar },
 
   created() {
     setInterval(() => {
@@ -59,7 +63,14 @@ export default {
       text: "",
       currentWord: 0,
       index: 0,
+      openSlide: false,
     };
+  },
+
+  methods: {
+    openSlideMethode(val) {
+      this.openSlide = val;
+    },
   },
 };
 </script>
@@ -119,6 +130,24 @@ export default {
         animation: tik 0.7s ease infinite;
       }
     }
+  }
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: all ease-in-out 1s;
+}
+
+.slide-enter,
+.slide-leave-to {
+  transform: translateX(300px);
+}
+
+@media only screen and (max-width: 821px) {
+  #home {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: flex-start;
   }
 }
 </style>

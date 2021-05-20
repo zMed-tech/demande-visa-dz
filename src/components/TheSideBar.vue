@@ -30,6 +30,7 @@ export default {
   align-items: center;
   flex-direction: column;
   position: absolute;
+  z-index: 1;
   left: 0;
   bottom: 20%;
 
@@ -53,6 +54,12 @@ export default {
 
   & .fa-youtube {
     color: red;
+  }
+}
+
+@media only screen and (max-width: 821px) {
+  #the-side-bar {
+    bottom: 10%;
   }
 }
 </style>

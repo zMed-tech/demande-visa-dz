@@ -34,6 +34,13 @@
       </li>
     </ul>
     <div class="last">Contact</div>
+    <div class="hamburger">
+      <div class="lines" @click="animateHamburger">
+        <div id="line1" class="line"></div>
+        <div id="line2" class="line"></div>
+        <div id="line3" class="line"></div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -41,6 +48,12 @@
 import gsap from "gsap";
 export default {
   name: "TheNavBar",
+
+  data() {
+    return {
+      open: true,
+    };
+  },
 
   mounted() {
     gsap.from("#the-nav-bar", {
@@ -50,6 +63,52 @@ export default {
       rotate: -20,
       ease: "bounce",
     });
+  },
+
+  methods: {
+    animateHamburger() {
+      if (this.open) {
+        gsap.to("#line1", {
+          x: -170,
+          y: 8,
+          rotate: 45,
+          duration: 2,
+        });
+
+        gsap.to("#line2", {
+          opacity: 0,
+        });
+
+        gsap.to("#line3", {
+          x: -170,
+          y: -8,
+          rotate: -45,
+          duration: 2,
+        });
+
+        this.open = false;
+        this.$emit("openSlide", true);
+      } else {
+        gsap.to("#line1", {
+          x: 0,
+          y: 0,
+          rotate: 0,
+        });
+
+        gsap.to("#line2", {
+          opacity: 1,
+        });
+
+        gsap.to("#line3", {
+          x: 0,
+          y: 0,
+          rotate: 0,
+        });
+
+        this.open = true;
+        this.$emit("openSlide", false);
+      }
+    },
   },
 };
 </script>
@@ -129,6 +188,37 @@ export default {
 
     &:hover::before {
       width: 80%;
+    }
+  }
+
+  & .hamburger {
+    display: none;
+    & .lines {
+      margin: 0.5rem 1rem;
+      cursor: pointer;
+
+      & .line {
+        width: 30px;
+        height: 5px;
+        background-color: $color-space;
+        margin: 0.2rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 821px) {
+  #the-nav-bar {
+    & .links {
+      display: none;
+    }
+
+    & .last {
+      display: none;
+    }
+
+    & .hamburger {
+      display: block;
     }
   }
 }
