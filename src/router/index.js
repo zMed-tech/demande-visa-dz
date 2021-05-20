@@ -10,6 +10,14 @@ const routes = [
     name: "Home",
     component: Home,
   },
+
+  {
+    path: "/visa/:visa",
+    name: "Visa",
+    props: true,
+    component: () =>
+      import(/* webpakChunkName: "VisaView" */ "@/views/VisaView.vue"),
+  },
 ];
 
 const router = new VueRouter({
