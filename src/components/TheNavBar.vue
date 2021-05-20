@@ -2,36 +2,94 @@
   <div id="the-nav-bar">
     <div class="logo"><img src="@/assets/images/logo.png" alt="Logo" /></div>
     <ul class="links">
-      <li class="link">
-        <span
-          ><img
-            src="@/assets/icons/spain.png"
-            alt="Spain"
-            width="15px"
-            height="15px"
-        /></span>
-        Espagne
-      </li>
-      <li class="link">
-        <span
-          ><img
-            src="@/assets/icons/france.png"
-            alt="france"
-            width="15px"
-            height="15px"
-        /></span>
-        France
-      </li>
-      <li class="link">
-        <span
-          ><img
-            src="@/assets/icons/germany.png"
-            alt="Germany"
-            width="15px"
-            height="15px"
-        /></span>
-        Germany
-      </li>
+      <router-link
+        v-slot="{ navigate, isActive, isExactActive }"
+        :to="{ name: 'Home' }"
+        custom
+      >
+        <li
+          :class="[
+            isActive && 'router-link-active',
+            isExactActive && 'router-link-exact-active',
+            'link',
+          ]"
+          @click="navigate"
+        >
+          Home
+        </li>
+      </router-link>
+
+      <router-link
+        v-slot="{ navigate, isActive, isExactActive }"
+        :to="{ name: 'Visa', params: { visa: 'Spain' } }"
+        custom
+      >
+        <li
+          :class="[
+            isActive && 'router-link-active',
+            isExactActive && 'router-link-exact-active',
+            'link',
+          ]"
+          @click="navigate"
+        >
+          <span
+            ><img
+              src="@/assets/icons/spain.png"
+              alt="Spain"
+              width="15px"
+              height="15px"
+          /></span>
+          Espagne
+        </li>
+      </router-link>
+
+      <router-link
+        v-slot="{ navigate, isActive, isExactActive }"
+        :to="{ name: 'Visa', params: { visa: 'France' } }"
+        custom
+      >
+        <li
+          :class="[
+            isActive && 'router-link-active',
+            isExactActive && 'router-link-exact-active',
+            'link',
+          ]"
+          @click="navigate"
+        >
+          <span
+            ><img
+              src="@/assets/icons/france.png"
+              alt="Spain"
+              width="15px"
+              height="15px"
+          /></span>
+          France
+        </li>
+      </router-link>
+
+      <router-link
+        v-slot="{ navigate, isActive, isExactActive }"
+        :to="{ name: 'Visa', params: { visa: 'Germany' } }"
+        custom
+      >
+        <li
+          :class="[
+            isActive && 'router-link-active',
+            isExactActive && 'router-link-exact-active',
+            'link',
+          ]"
+          @click="navigate"
+        >
+          <span
+            ><img
+              src="@/assets/icons/germany.png"
+              alt="Spain"
+              width="15px"
+              height="15px"
+          /></span>
+          Germany
+        </li>
+      </router-link>
     </ul>
     <div class="last">Contact</div>
     <div class="hamburger">
@@ -72,7 +130,7 @@ export default {
           x: -170,
           y: 8,
           rotate: 45,
-          duration: 2,
+          duration: 1,
         });
 
         gsap.to("#line2", {
@@ -146,7 +204,7 @@ export default {
       display: flex;
       justify-content: space-between;
       align-items: center;
-
+      position: relative;
       color: $color-secondary;
       font-weight: bold;
       transition: all ease-in-out 0.7s;
@@ -163,6 +221,20 @@ export default {
       &:hover {
         transform: scale(1.2);
       }
+
+      &::before {
+        content: "";
+        position: absolute;
+        height: 2px;
+        width: 0%;
+        bottom: -5px;
+        background-color: $color-space;
+        transition: all ease-in-out 0.7s;
+      }
+    }
+
+    & .router-link-exact-active::before {
+      width: 100%;
     }
   }
 
