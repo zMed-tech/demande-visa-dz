@@ -1,0 +1,32 @@
+.slide-enter-active,
+.slide-leave-active {
+  transition: all ease-in-out 1s;
+}
+
+.slide-enter,
+.slide-leave-to {
+  transform: translateX(300px);
+}
+
+
+.slide-visa-enter-active,
+.slide-visa-leave-active {
+  transition: all ease-in-out 1s;
+}
+
+.slide-visa-enter,
+.slide-visa-leave-to {
+  transform: translateX(800px);
+}
+
+
+.slide-view-enter-active,
+.slide-view-leave-active {
+  transition: all ease-in-out 1s;
+}
+
+.slide-view-enter,
+.slide-view-leave-to {
+  transform: translateX(300px);
+  opacity: 0;
+}
