@@ -1,45 +1,103 @@
 <template>
   <div id="the-slide-bar">
     <ul class="links">
-      <li class="link">
-        <i class="fas fa-home"></i>
-        Home
-      </li>
-      <li class="link">
-        <img
-          src="@/assets/icons/spain.png"
-          alt="spain"
-          width="15px"
-          height="15px"
-        />
-        Espagne
-      </li>
+      <router-link
+        v-slot="{ navigate, isActive, isExactActive }"
+        :to="{ name: 'Home' }"
+        custom
+      >
+        <li
+          :class="[
+            isActive && 'router-link-active',
+            isExactActive && 'router-link-exact-active',
+            'link',
+          ]"
+          @click="navigate"
+        >
+          <i class="fas fa-home"></i>
+          Home
+        </li>
+      </router-link>
 
-      <li class="link">
-        <img
-          src="@/assets/icons/france.png"
-          alt="france"
-          width="15px"
-          height="15px"
-        />
-        France
-      </li>
+      <router-link
+        v-slot="{ navigate, isActive, isExactActive }"
+        :to="{ name: 'Visa', params: { visa: 'Spain' } }"
+        custom
+      >
+        <li
+          :class="[
+            isActive && 'router-link-active',
+            isExactActive && 'router-link-exact-active',
+            'link',
+          ]"
+          @click="navigate"
+        >
+          <span
+            ><img
+              src="@/assets/icons/spain.png"
+              alt="Spain"
+              width="15px"
+              height="15px"
+          /></span>
+          Espagne
+        </li>
+      </router-link>
 
-      <li class="link">
-        <img
-          src="@/assets/icons/germany.png"
-          alt="germany"
-          width="15px"
-          height="15px"
-        />
-        German
-      </li>
+      <router-link
+        v-slot="{ navigate, isActive, isExactActive }"
+        :to="{ name: 'Visa', params: { visa: 'France' } }"
+        custom
+      >
+        <li
+          :class="[
+            isActive && 'router-link-active',
+            isExactActive && 'router-link-exact-active',
+            'link',
+          ]"
+          @click="navigate"
+        >
+          <span
+            ><img
+              src="@/assets/icons/france.png"
+              alt="Spain"
+              width="15px"
+              height="15px"
+          /></span>
+          France
+        </li>
+      </router-link>
+
+      <router-link
+        v-slot="{ navigate, isActive, isExactActive }"
+        :to="{ name: 'Visa', params: { visa: 'Germany' } }"
+        custom
+      >
+        <li
+          :class="[
+            isActive && 'router-link-active',
+            isExactActive && 'router-link-exact-active',
+            'link',
+          ]"
+          @click="navigate"
+        >
+          <span
+            ><img
+              src="@/assets/icons/germany.png"
+              alt="Spain"
+              width="15px"
+              height="15px"
+          /></span>
+          Germany
+        </li>
+      </router-link>
     </ul>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "TheSlideBar",
+};
 </script>
 
 <style lang="scss" scoped>
