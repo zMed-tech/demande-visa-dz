@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view />
+    <transition name="slide-view" mode="out-in">
+      <router-view :key="$route.path" />
+    </transition>
   </div>
 </template>
 
