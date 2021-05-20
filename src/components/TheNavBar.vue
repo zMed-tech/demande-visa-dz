@@ -1,8 +1,6 @@
 <template>
   <div id="the-nav-bar">
-    <div class="logo">
-      <h2>Logo</h2>
-    </div>
+    <div class="logo"><img src="@/assets/images/logo.png" alt="Logo" /></div>
     <ul class="links">
       <li class="link">
         <span
@@ -58,6 +56,13 @@ export default {
   padding: 0.5rem 1rem;
 
   & .logo {
+    border-radius: 30px;
+    overflow: hidden;
+    max-width: 200px;
+
+    & img {
+      max-width: 200px;
+    }
   }
 
   & .links {
