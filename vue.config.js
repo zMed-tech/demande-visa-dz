@@ -8,4 +8,15 @@ module.exports = {
       },
     },
   },
+
+  pwa: {
+    iconPaths: {
+      maskicon: null,
+      favicon32: "./favicon.png",
+      favicon16: "./favicon.png",
+      appleTouchIcon: null,
+      msTileImage: null,
+    },
+    // configure the workbox plugin
+  },
 };
