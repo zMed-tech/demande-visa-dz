@@ -1,14 +1,282 @@
 <template>
-  <div id="form-ind"></div>
+  <div id="form-ind">
+    <ValidationObserver ref="validation" v-slot="{}">
+      <div class="title">
+        <h3>Personel Information</h3>
+      </div>
+
+      <ValidationProvider
+        v-slot="{ valid, errors }"
+        name="prenom"
+        rules="required|alpha"
+      >
+        <div class="input">
+          <input
+            v-model="prenom"
+            type="text"
+            placeholder="Prenom"
+            name="prenom"
+          />
+
+          <i
+            :class="{
+              'fas fa-exclamation-circle': errors[0],
+              'fas fa-check': valid,
+            }"
+          ></i>
+        </div>
+      </ValidationProvider>
+
+      <ValidationProvider
+        v-slot="{ valid, errors }"
+        name="nom"
+        rules="required|alpha"
+      >
+        <div class="input">
+          <input v-model="nom" type="text" placeholder="Nom" />
+          <i
+            :class="{
+              'fas fa-exclamation-circle': errors[0],
+              'fas fa-check': valid,
+            }"
+          ></i>
+        </div>
+      </ValidationProvider>
+
+      <ValidationProvider
+        v-slot="{ valid, errors }"
+        name="dateNaissance"
+        rules="required"
+      >
+        <div class="input">
+          <input
+            v-model="dateNaissance"
+            type="text"
+            placeholder="Date De Naissance"
+          />
+          <i
+            :class="{
+              'fas fa-exclamation-circle': errors[0],
+              'fas fa-check': valid,
+            }"
+          ></i>
+        </div>
+      </ValidationProvider>
+
+      <ValidationProvider
+        v-slot="{ valid, errors }"
+        name="tel"
+        rules="required|integer"
+      >
+        <div class="input">
+          <input v-model="tel" type="text" placeholder="Tel" />
+          <i
+            :class="{
+              'fas fa-exclamation-circle': errors[0],
+              'fas fa-check': valid,
+            }"
+          ></i>
+        </div>
+      </ValidationProvider>
+
+      <ValidationProvider
+        v-slot="{ valid, errors }"
+        name="email"
+        rules="required|email"
+      >
+        <div class="input">
+          <input v-model="email" type="text" placeholder="Email" />
+          <i
+            :class="{
+              'fas fa-exclamation-circle': errors[0],
+              'fas fa-check': valid,
+            }"
+          ></i>
+        </div>
+      </ValidationProvider>
+
+      <div class="title">
+        <h3>Passeport Information</h3>
+      </div>
+
+      <ValidationProvider
+        v-slot="{ valid, errors }"
+        name="num"
+        rules="required|integer"
+      >
+        <div class="input">
+          <input v-model="num" type="text" placeholder="Numero" />
+          <i
+            :class="{
+              'fas fa-exclamation-circle': errors[0],
+              'fas fa-check': valid,
+            }"
+          ></i>
+        </div>
+      </ValidationProvider>
+
+      <ValidationProvider
+        v-slot="{ valid, errors }"
+        name="dateDelivrance"
+        rules="required"
+      >
+        <div class="input">
+          <input
+            v-model="dateDelivrance"
+            type="text"
+            placeholder="Date De Delivrance"
+          />
+          <i
+            :class="{
+              'fas fa-exclamation-circle': errors[0],
+              'fas fa-check': valid,
+            }"
+          ></i>
+        </div>
+      </ValidationProvider>
+
+      <ValidationProvider
+        v-slot="{ valid, errors }"
+        name="dateExpiration"
+        rules="required"
+      >
+        <div class="input">
+          <input
+            v-model="dateExpiration"
+            type="text"
+            placeholder="Date D'expirations"
+          />
+          <i
+            :class="{
+              'fas fa-exclamation-circle': errors[0],
+              'fas fa-check': valid,
+            }"
+          ></i>
+        </div>
+      </ValidationProvider>
+
+      <div class="btn">
+        <button @click="confirm">Confirm</button>
+        <button @click="cancel">Cancel</button>
+      </div>
+
+      <div class="panding">
+        <i :class="{ 'fas fa-spinner': panding, 'fas fa-check': check }"></i>
+      </div>
+    </ValidationObserver>
+  </div>
 </template>
 
 <script>
-export default {};
+import { ValidationObserver, ValidationProvider } from "vee-validate";
+import "@/package/vee-validate.js";
+export default {
+  name: "FormInd",
+
+  components: { ValidationObserver, ValidationProvider },
+
+  data() {
+    return {
+      prenom: "",
+      nom: "",
+      dateNaissance: "",
+      tel: "",
+      email: "",
+      num: "",
+      dateDelivrance: "",
+      dateExpiration: "",
+      panding: false,
+      check: false,
+    };
+  },
+
+  methods: {
+    async confirm() {
+      let valid = await this.$refs.validation.validate();
+      if (valid) {
+        this.panding = true;
+        this.check = false;
+        setTimeout(() => {
+          this.panding = false;
+          this.check = true;
+        }, 2000);
+      }
+    },
+    cancel() {
+      this.prenom = "";
+      this.nom = "";
+      this.dateNaissance = "";
+      this.tel = "";
+      this.email = "";
+      this.num = "";
+      this.dateDelivrance = "";
+      this.dateExpiration = "";
+      this.panding = false;
+      this.check = false;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 #form-ind {
   margin-top: $nav-height;
-  background-color: red;
+  background: linear-gradient(to bottom, rgb(40, 205, 235), rgb(233, 149, 149));
+  box-shadow: 2px 1px 5px 4px $color-primary;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+
+  & .title {
+    margin: 0.5rem 0;
+  }
+
+  & .input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.7rem 0;
+    background-color: white;
+
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 0.3rem 0.5rem;
+
+    & input {
+      font-size: 0.9rem;
+    }
+  }
+
+  & .btn {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 1rem 0;
+
+    & button {
+      padding: 0.2rem 0.3rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      background: linear-gradient(to right, $color-space, $color-space);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all ease-in-out 0.7s;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  & .panding {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 </style>
