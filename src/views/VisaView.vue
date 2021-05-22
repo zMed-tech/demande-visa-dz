@@ -87,7 +87,7 @@ export default {
 
   & .chose {
     position: absolute;
-    top: 20%;
+    top: 10%;
     left: 0;
     display: flex;
     flex-direction: row;
@@ -101,6 +101,14 @@ export default {
         font-weight: bold;
         color: $color-secondary;
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 821px) {
+  #visa-view {
+    & .chose {
+      flex-direction: column;
     }
   }
 }
