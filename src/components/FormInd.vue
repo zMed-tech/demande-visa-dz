@@ -50,10 +50,7 @@
       >
         <div class="input date">
           <label>Date De Naissance</label>
-          <date-picker
-            v-model="dateNaissance"
-            value-type="format"
-          ></date-picker>
+          <date-picker v-model="dateNaissance"></date-picker>
           <i
             :class="{
               'fas fa-exclamation-circle': errors[0],
@@ -116,16 +113,16 @@
       </ValidationProvider>
 
       <ValidationProvider
-        v-slot="{ valid, errors }"
+        v-slot="{ errors, valid }"
         name="dateDelivrance"
         rules="required"
       >
-        <div class="input">
-          <input
+        <div class="input date">
+          <label>Date De Delivrance</label>
+          <date-picker
             v-model="dateDelivrance"
-            type="text"
-            placeholder="Date De Delivrance"
-          />
+            value-type="format"
+          ></date-picker>
           <i
             :class="{
               'fas fa-exclamation-circle': errors[0],
@@ -136,16 +133,16 @@
       </ValidationProvider>
 
       <ValidationProvider
-        v-slot="{ valid, errors }"
+        v-slot="{ errors, valid }"
         name="dateExpiration"
         rules="required"
       >
-        <div class="input">
-          <input
+        <div class="input date">
+          <label>Date D'Expiration</label>
+          <date-picker
             v-model="dateExpiration"
-            type="text"
-            placeholder="Date D'expirations"
-          />
+            value-type="format"
+          ></date-picker>
           <i
             :class="{
               'fas fa-exclamation-circle': errors[0],
@@ -241,7 +238,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+
     margin: 0.7rem 0;
     background-color: white;
     border-radius: 8px;
@@ -254,6 +251,15 @@ export default {
 
     &:hover {
       border: 1px solid $color-primary;
+    }
+  }
+
+  & .date {
+    flex-direction: column;
+
+    & label {
+      font-size: 0.9rem;
+      color: #616161;
     }
   }
 
