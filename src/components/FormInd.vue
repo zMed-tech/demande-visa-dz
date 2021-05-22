@@ -44,16 +44,16 @@
       </ValidationProvider>
 
       <ValidationProvider
-        v-slot="{ valid, errors }"
+        v-slot="{ errors, valid }"
         name="dateNaissance"
         rules="required"
       >
-        <div class="input">
-          <input
+        <div class="input date">
+          <label>Date De Naissance</label>
+          <date-picker
             v-model="dateNaissance"
-            type="text"
-            placeholder="Date De Naissance"
-          />
+            value-type="format"
+          ></date-picker>
           <i
             :class="{
               'fas fa-exclamation-circle': errors[0],
@@ -169,11 +169,14 @@
 
 <script>
 import { ValidationObserver, ValidationProvider } from "vee-validate";
+import DatePicker from "vue2-datepicker";
+import "vue2-datepicker/index.css";
+
 import "@/package/vee-validate.js";
 export default {
   name: "FormInd",
 
-  components: { ValidationObserver, ValidationProvider },
+  components: { ValidationObserver, ValidationProvider, DatePicker },
 
   data() {
     return {
@@ -238,15 +241,19 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     margin: 0.7rem 0;
     background-color: white;
-
     border-radius: 8px;
-    overflow: hidden;
+
     padding: 0.3rem 0.5rem;
 
     & input {
       font-size: 0.9rem;
+    }
+
+    &:hover {
+      border: 1px solid $color-primary;
     }
   }
 
