@@ -92,6 +92,14 @@
         </div>
       </ValidationProvider>
 
+      <div class="input">
+        <label>Type</label>
+        <select v-model="typeVisa">
+          <option value="Touristique">Touristique</option>
+          <option value="Medicale">Medicale</option>
+        </select>
+      </div>
+
       <div class="title">
         <h3>Passeport Information</h3>
       </div>
@@ -183,6 +191,7 @@ export default {
       tel: "",
       email: "",
       num: "",
+      typeVisa: "Touristique",
       dateDelivrance: "",
       dateExpiration: "",
       panding: false,
@@ -251,6 +260,19 @@ export default {
 
     &:hover {
       border: 1px solid $color-primary;
+    }
+
+    & select {
+      background: linear-gradient(to right, $color-space, $color-primary);
+      width: 100%;
+      outline: none;
+      border: none;
+      margin: 0 0.2rem;
+    }
+
+    & label {
+      font-size: 0.9rem;
+      color: #616161;
     }
   }
 
