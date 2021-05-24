@@ -78,6 +78,7 @@ export default {
 
   & .bg-visa {
     position: absolute;
+    top: 0;
     z-index: -1;
     height: 100%;
     width: 100%;
