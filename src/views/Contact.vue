@@ -21,7 +21,7 @@
 
         <div class="right-input">
           <div class="input">
-            <textarea cols="30" rows="10" placeholder="Message"></textarea>
+            <textarea cols="22" rows="10" placeholder="Message"></textarea>
           </div>
         </div>
       </div>
@@ -176,6 +176,16 @@ export default {
         &:hover {
           transform: scale(1.1);
         }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 871px) {
+  #contact {
+    & .content-contact {
+      & .contact-input {
+        flex-direction: column;
       }
     }
   }
