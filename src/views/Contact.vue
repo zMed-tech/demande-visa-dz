@@ -159,6 +159,7 @@ export default {
     & .btn {
       display: flex;
       justify-content: center;
+      margin: 1rem 0;
 
       & button {
         padding: 0.5rem 1rem;
