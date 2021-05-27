@@ -92,7 +92,7 @@
         </div>
       </ValidationProvider>
 
-      <div class="input">
+      <div class="input sel">
         <label>Type</label>
         <select v-model="typeVisa">
           <option value="Touristique">Touristique</option>
@@ -262,17 +262,20 @@ export default {
       border: 1px solid $color-primary;
     }
 
+    & label {
+      font-size: 0.9rem;
+      color: #616161;
+    }
+  }
+
+  & .sel {
+    background: linear-gradient(to right, $color-space, $color-primary);
     & select {
       background: linear-gradient(to right, $color-space, $color-primary);
       width: 100%;
       outline: none;
       border: none;
       margin: 0 0.2rem;
-    }
-
-    & label {
-      font-size: 0.9rem;
-      color: #616161;
     }
   }
 

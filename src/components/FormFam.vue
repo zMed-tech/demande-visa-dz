@@ -38,7 +38,7 @@
           </div>
         </ValidationProvider>
 
-        <div class="input">
+        <div class="input sel">
           <label>Membre</label>
           <select v-model="membre" placeholder="Membre">
             <option value="2">2</option>
@@ -152,8 +152,13 @@ export default {
         &:hover {
           border: 1px solid $color-primary;
         }
+      }
+
+      & .sel {
+        background-color: white;
 
         & select {
+          background-color: white;
           width: 100%;
           outline: none;
           border: none;
