@@ -90,6 +90,24 @@
           Germany
         </li>
       </router-link>
+
+      <router-link
+        v-slot="{ navigate, isActive, isExactActive }"
+        :to="{ name: 'Contact' }"
+        custom
+      >
+        <li
+          :class="[
+            isActive && 'router-link-active',
+            isExactActive && 'router-link-exact-active',
+            'link',
+          ]"
+          @click="navigate"
+        >
+          <i class="fas fa-envelope-open"></i>
+          Contact
+        </li>
+      </router-link>
     </ul>
   </div>
 </template>

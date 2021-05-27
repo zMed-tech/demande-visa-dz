@@ -91,7 +91,7 @@
         </li>
       </router-link>
     </ul>
-    <div class="last">Contact</div>
+    <div class="last" @click="goToContact">Contact</div>
     <div class="hamburger">
       <div class="lines" @click="animateHamburger">
         <div id="line1" class="line"></div>
@@ -166,6 +166,12 @@ export default {
         this.open = true;
         this.$emit("openSlide", false);
       }
+    },
+
+    goToContact() {
+      this.$router.push({
+        name: "Contact",
+      });
     },
   },
 };
