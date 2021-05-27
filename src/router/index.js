@@ -18,6 +18,22 @@ const routes = [
     component: () =>
       import(/* webpakChunkName: "VisaView" */ "@/views/VisaView.vue"),
   },
+
+  {
+    path: "/contact",
+    name: "Contact",
+    props: true,
+    component: () =>
+      import(/* webpakChunkName: "VisaView" */ "@/views/Contact.vue"),
+  },
+
+  {
+    path: "*",
+    name: "Error",
+    props: true,
+    component: () =>
+      import(/* webpakChunkName: "VisaView" */ "@/views/ErrorPage.vue"),
+  },
 ];
 
 const router = new VueRouter({
