@@ -6,27 +6,84 @@
     </transition>
     <div class="bg-visa"></div>
     <div class="content-contact">
-      <div class="contact-input">
-        <div class="left-input">
-          <div class="input">
-            <input type="text" placeholder="Name" />
-          </div>
-          <div class="input">
-            <input type="text" placeholder="Email" />
-          </div>
-          <div class="input">
-            <input type="text" placeholder="Subject" />
-          </div>
-        </div>
+      <ValidationObserver ref="validation">
+        <div class="contact-input">
+          <div class="left-input">
+            <ValidationProvider
+              v-slot="{ valid, errors }"
+              name="name"
+              rules="required|alpha"
+            >
+              <div class="input">
+                <input v-model="name" type="text" placeholder="Name" />
+                <i
+                  :class="{
+                    'fas fa-exclamation-circle': errors[0],
+                    'fas fa-check': valid,
+                  }"
+                ></i>
+              </div>
+            </ValidationProvider>
 
-        <div class="right-input">
-          <div class="input">
-            <textarea cols="22" rows="10" placeholder="Message"></textarea>
+            <ValidationProvider
+              v-slot="{ valid, errors }"
+              name="email"
+              rules="required|email"
+            >
+              <div class="input">
+                <input v-model="email" type="text" placeholder="Email" />
+                <i
+                  :class="{
+                    'fas fa-exclamation-circle': errors[0],
+                    'fas fa-check': valid,
+                  }"
+                ></i>
+              </div>
+            </ValidationProvider>
+
+            <ValidationProvider
+              v-slot="{ valid, errors }"
+              name="subject"
+              rules="required|alpha"
+            >
+              <div class="input">
+                <input v-model="subject" type="text" placeholder="Subject" />
+                <i
+                  :class="{
+                    'fas fa-exclamation-circle': errors[0],
+                    'fas fa-check': valid,
+                  }"
+                ></i>
+              </div>
+            </ValidationProvider>
+          </div>
+
+          <div class="right-input">
+            <ValidationProvider
+              v-slot="{ valid, errors }"
+              name="message"
+              rules="required|alpha"
+            >
+              <div class="input">
+                <textarea
+                  v-model="message"
+                  cols="22"
+                  rows="10"
+                  placeholder="Message"
+                ></textarea>
+                <i
+                  :class="{
+                    'fas fa-exclamation-circle': errors[0],
+                    'fas fa-check': valid,
+                  }"
+                ></i>
+              </div>
+            </ValidationProvider>
           </div>
         </div>
-      </div>
+      </ValidationObserver>
       <div class="btn">
-        <button>Send</button>
+        <button @click="test">Send</button>
       </div>
     </div>
   </div>
@@ -36,6 +93,8 @@
 import TheNavBar from "@/components/TheNavBar.vue";
 import TheSlideBar from "@/components/TheSlideBar.vue";
 import gsap from "gsap";
+import { ValidationObserver, ValidationProvider } from "vee-validate";
+import "@/package/vee-validate.js";
 
 export default {
   name: "VisaView",
@@ -43,12 +102,18 @@ export default {
   components: {
     TheNavBar,
     TheSlideBar,
+    ValidationObserver,
+    ValidationProvider,
   },
 
   data() {
     return {
       typeVisa: "ind",
       openSlide: false,
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
     };
   },
 
@@ -75,6 +140,11 @@ export default {
   methods: {
     openSlideMethode(val) {
       this.openSlide = val;
+    },
+
+    async test() {
+      let valid = await this.$refs.validation.validate();
+      console.log(valid);
     },
   },
 };
