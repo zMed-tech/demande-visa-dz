@@ -21,7 +21,7 @@
 
       <router-link
         v-slot="{ navigate, isActive, isExactActive }"
-        :to="{ name: 'Visa', params: { visa: 'Spain' } }"
+        :to="{ name: 'Visa', params: { visa: 'spain' } }"
         custom
       >
         <li
@@ -45,7 +45,7 @@
 
       <router-link
         v-slot="{ navigate, isActive, isExactActive }"
-        :to="{ name: 'Visa', params: { visa: 'France' } }"
+        :to="{ name: 'Visa', params: { visa: 'france' } }"
         custom
       >
         <li
@@ -69,7 +69,7 @@
 
       <router-link
         v-slot="{ navigate, isActive, isExactActive }"
-        :to="{ name: 'Visa', params: { visa: 'Germany' } }"
+        :to="{ name: 'Visa', params: { visa: 'germany' } }"
         custom
       >
         <li
