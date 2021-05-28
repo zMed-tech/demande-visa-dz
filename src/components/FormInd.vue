@@ -7,16 +7,11 @@
 
       <ValidationProvider
         v-slot="{ valid, errors }"
-        name="prenom"
+        name="name"
         rules="required|alpha"
       >
         <div class="input">
-          <input
-            v-model="prenom"
-            type="text"
-            placeholder="Prenom"
-            name="prenom"
-          />
+          <input v-model="name" type="text" placeholder="Prenom" />
 
           <i
             :class="{
@@ -29,11 +24,11 @@
 
       <ValidationProvider
         v-slot="{ valid, errors }"
-        name="nom"
+        name="lastName"
         rules="required|alpha"
       >
         <div class="input">
-          <input v-model="nom" type="text" placeholder="Nom" />
+          <input v-model="lastName" type="text" placeholder="Nom" />
           <i
             :class="{
               'fas fa-exclamation-circle': errors[0],
@@ -50,7 +45,10 @@
       >
         <div class="input date">
           <label>Date De Naissance</label>
-          <date-picker v-model="dateNaissance"></date-picker>
+          <date-picker
+            v-model="dateNaissance"
+            value-type="format"
+          ></date-picker>
           <i
             :class="{
               'fas fa-exclamation-circle': errors[0],
@@ -176,6 +174,7 @@
 import { ValidationObserver, ValidationProvider } from "vee-validate";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
+import axios from "axios";
 
 import "@/package/vee-validate.js";
 export default {
@@ -183,10 +182,17 @@ export default {
 
   components: { ValidationObserver, ValidationProvider, DatePicker },
 
+  props: {
+    visa: {
+      type: String,
+      default: "",
+    },
+  },
+
   data() {
     return {
-      prenom: "",
-      nom: "",
+      name: "",
+      lastName: "",
       dateNaissance: "",
       tel: "",
       email: "",
@@ -205,10 +211,23 @@ export default {
       if (valid) {
         this.panding = true;
         this.check = false;
-        setTimeout(() => {
-          this.panding = false;
-          this.check = true;
-        }, 2000);
+        let obj = {
+          code: "dzbjadz6d5zadzjkfdnzfe5zfezfdzadazd6z4ad1azd",
+          country: this.visa,
+          name: this.name,
+          lastName: this.lastName,
+          dateNaissance: this.dateNaissance,
+          tel: this.tel,
+          email: this.email,
+          typeVisa: this.typeVisa,
+          numPas: this.num,
+          dateDelivrance: this.dateDelivrance,
+          dateExpiration: this.dateExpiration,
+        };
+        let data = await axios.post("/ind", obj);
+        this.panding = false;
+        this.check = true;
+        console.log(data);
       }
     },
     cancel() {
