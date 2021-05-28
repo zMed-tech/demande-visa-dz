@@ -16,7 +16,7 @@
       </div>
     </div>
     <transition name="slide-visa" mode="out-in">
-      <component :is="comp" />
+      <component :is="comp" :visa="visa" />
     </transition>
   </div>
 </template>
