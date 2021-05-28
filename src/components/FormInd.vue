@@ -164,7 +164,13 @@
       </div>
 
       <div class="panding">
-        <i :class="{ 'fas fa-spinner': panding, 'fas fa-check': check }"></i>
+        <i
+          :class="{
+            'fas fa-spinner': panding,
+            'fas fa-check': check,
+            'fas fa-exclamation-circle': error,
+          }"
+        ></i>
       </div>
     </ValidationObserver>
   </div>
@@ -202,6 +208,7 @@ export default {
       dateExpiration: "",
       panding: false,
       check: false,
+      error: false,
     };
   },
 
@@ -211,6 +218,7 @@ export default {
       if (valid) {
         this.panding = true;
         this.check = false;
+        this.error = false;
         let obj = {
           code: "dzbjadz6d5zadzjkfdnzfe5zfezfdzadazd6z4ad1azd",
           country: this.visa,
@@ -228,6 +236,8 @@ export default {
         this.panding = false;
         if (data == "success") {
           this.check = true;
+        } else {
+          this.error = true;
         }
       }
     },
