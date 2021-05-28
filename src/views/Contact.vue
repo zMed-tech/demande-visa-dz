@@ -83,7 +83,16 @@
         </div>
       </ValidationObserver>
       <div class="btn">
-        <button @click="test">Send</button>
+        <button @click="send">Send</button>
+      </div>
+      <div class="panding">
+        <i
+          :class="{
+            'fas fa-spinner': panding,
+            'fas fa-check': check,
+            'fas fa-exclamation-circle': error,
+          }"
+        ></i>
       </div>
     </div>
   </div>
@@ -95,6 +104,7 @@ import TheSlideBar from "@/components/TheSlideBar.vue";
 import gsap from "gsap";
 import { ValidationObserver, ValidationProvider } from "vee-validate";
 import "@/package/vee-validate.js";
+import axios from "axios";
 
 export default {
   name: "VisaView",
@@ -114,6 +124,9 @@ export default {
       email: "",
       subject: "",
       message: "",
+      panding: false,
+      check: false,
+      error: false,
     };
   },
 
@@ -142,9 +155,37 @@ export default {
       this.openSlide = val;
     },
 
-    async test() {
+    async send() {
       let valid = await this.$refs.validation.validate();
-      console.log(valid);
+      if (valid) {
+        this.panding = true;
+        this.error = false;
+        this.check = false;
+
+        let obj = {
+          email: this.email,
+          subject: this.subject,
+          message:
+            "email : " +
+            this.email +
+            ", name : " +
+            this.name +
+            " , message : " +
+            this.message,
+        };
+
+        let { data } = await axios.post("/contact", obj);
+
+        if (data == "err") {
+          this.panding = false;
+          this.error = true;
+          this.check = false;
+        } else {
+          this.panding = false;
+          this.error = false;
+          this.check = true;
+        }
+      }
     },
   },
 };
