@@ -224,10 +224,11 @@ export default {
           dateDelivrance: this.dateDelivrance,
           dateExpiration: this.dateExpiration,
         };
-        let data = await axios.post("/ind", obj);
+        let { data } = await axios.post("/ind", obj);
         this.panding = false;
-        this.check = true;
-        console.log(data);
+        if (data == "success") {
+          this.check = true;
+        }
       }
     },
     cancel() {
