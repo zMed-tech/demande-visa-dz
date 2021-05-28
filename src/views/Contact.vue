@@ -174,7 +174,7 @@ export default {
             this.message,
         };
 
-        let { data } = await axios.post("http://localhost:3000/contact", obj);
+        let { data } = await axios.post("/contact", obj);
 
         if (data == "success") {
           this.panding = false;
