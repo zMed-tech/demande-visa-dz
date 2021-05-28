@@ -174,16 +174,16 @@ export default {
             this.message,
         };
 
-        let { data } = await axios.post("/contact", obj);
+        let { data } = await axios.post("http://localhost:3000/contact", obj);
 
-        if (data == "err") {
-          this.panding = false;
-          this.error = true;
-          this.check = false;
-        } else {
+        if (data == "success") {
           this.panding = false;
           this.error = false;
           this.check = true;
+        } else {
+          this.panding = false;
+          this.error = true;
+          this.check = false;
         }
       }
     },
