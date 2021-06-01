@@ -12,7 +12,7 @@
             <ValidationProvider
               v-slot="{ valid, errors }"
               name="name"
-              rules="required"
+              rules="required|alpha"
             >
               <div class="input">
                 <input v-model="name" type="text" placeholder="Name" />
@@ -62,7 +62,7 @@
             <ValidationProvider
               v-slot="{ valid, errors }"
               name="message"
-              rules="required|alpha_spaces"
+              rules="required"
             >
               <div class="input">
                 <textarea
