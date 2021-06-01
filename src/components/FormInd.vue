@@ -277,7 +277,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-
     margin: 0.7rem 0;
     background-color: white;
     border-radius: 8px;
@@ -289,7 +288,7 @@ export default {
     }
 
     &:hover {
-      border: 1px solid $color-primary;
+      border: 2px solid $color-primary;
     }
 
     & label {
