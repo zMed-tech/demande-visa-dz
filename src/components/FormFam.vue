@@ -1244,7 +1244,7 @@ export default {
            dateExpiration : ${this.personne8.dateExpiration} `,
         };
 
-        let { data } = await axios.post("http://localhost:3000/fam", obj);
+        let { data } = await axios.post("/fam", obj);
         this.panding = false;
         if (data == "err") {
           this.error = true;
