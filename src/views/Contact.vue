@@ -234,11 +234,7 @@ export default {
             color: black;
             padding: 0.5rem 1rem;
             font-weight: bold;
-            background: linear-gradient(
-              to right,
-              $color-secondary,
-              rgb(160, 155, 150)
-            );
+            background: linear-gradient(to right, white, $color-secondary);
             outline: none;
             border: none;
             border-radius: 2rem;
@@ -255,11 +251,7 @@ export default {
           font-size: 1.2rem;
           padding: 0.5rem 1rem;
           font-weight: bold;
-          background: linear-gradient(
-            to right,
-            $color-secondary,
-            rgb(160, 155, 150)
-          );
+          background: linear-gradient(to right, white, $color-secondary);
           outline: none;
           border: none;
           border-radius: 0.5rem;
@@ -275,11 +267,7 @@ export default {
       & button {
         padding: 0.5rem 1rem;
         font-size: 1.2rem;
-        background: linear-gradient(
-          to right,
-          $color-secondary,
-          rgb(160, 155, 150)
-        );
+        background: linear-gradient(to right, white, $color-secondary);
         border-radius: 1rem;
         font-weight: bold;
         cursor: pointer;
