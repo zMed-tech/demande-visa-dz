@@ -126,6 +126,7 @@ export default {
         position: absolute;
         bottom: 0;
         height: 100%;
+        margin: 0 0.4rem;
         width: 1.5px;
         background-color: black;
         animation: tik 0.7s ease infinite;
