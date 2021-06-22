@@ -1,6 +1,6 @@
 <template>
   <div id="form-ind">
-    <ValidationObserver ref="validation" v-slot="{}">
+    <ValidationObserver ref="validation" v-slot="{}" class="observer-span">
       <div class="title">
         <h3>Personel Information</h3>
       </div>
@@ -265,9 +265,14 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   padding: 0.5rem 1.5rem;
   border-radius: 20px;
+  width: 30%;
+
+  & .observer-span {
+    width: 100%;
+  }
 
   & .title {
     margin: 0.5rem 0;
@@ -275,12 +280,11 @@ export default {
 
   & .input {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     margin: 0.7rem 0;
     background-color: white;
     border-radius: 8px;
-
     padding: 0.3rem 0.5rem;
 
     & input {
@@ -309,7 +313,9 @@ export default {
   }
 
   & .date {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
     & label {
       font-size: 0.9rem;
@@ -344,6 +350,12 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+}
+
+@media only screen and (max-width: 876px) {
+  #form-ind {
+    width: 80%;
   }
 }
 </style>
