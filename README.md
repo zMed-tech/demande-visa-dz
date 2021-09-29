@@ -1,4 +1,4 @@
-# demande-visa-algerie2
+# demande-visa-dz
 
 ## Project setup
 ```
