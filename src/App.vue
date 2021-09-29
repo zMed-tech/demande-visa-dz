@@ -1,10 +1,19 @@
 <template>
   <div id="app">
+    <RefreshPage v-if="$store.state.refresh" />
     <transition name="slide-view" mode="out-in">
       <router-view :key="$route.path" />
     </transition>
   </div>
 </template>
+<script>
+import RefreshPage from "@/components/RefreshPage.vue";
+
+export default {
+  name: "App",
+  components: { RefreshPage },
+};
+</script>
 
 <style lang="scss">
 * {
