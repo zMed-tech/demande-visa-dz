@@ -2,13 +2,20 @@
   <div class="refresh-page">
     <div class="text">New content is available; please refresh</div>
     <div class="button">
-      <button>Refresh</button>
+      <button @click="refresh">Refresh</button>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "RefreshPage",
+  methods: {
+    refresh() {
+      location.reload();
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
